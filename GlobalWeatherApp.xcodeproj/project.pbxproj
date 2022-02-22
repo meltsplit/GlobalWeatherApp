@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F47CCE1C27BE758F00CA948E /* TimeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CCE1B27BE758F00CA948E /* TimeCalculator.swift */; };
 		F4869F4C27AC1E7400A26DCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4869F4B27AC1E7400A26DCD /* AppDelegate.swift */; };
 		F4869F4E27AC1E7400A26DCD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4869F4D27AC1E7400A26DCD /* SceneDelegate.swift */; };
 		F4869F5027AC1E7400A26DCD /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4869F4F27AC1E7400A26DCD /* WeatherViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F47CCE1B27BE758F00CA948E /* TimeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCalculator.swift; sourceTree = "<group>"; };
 		F4869F4827AC1E7400A26DCD /* GlobalWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4869F4B27AC1E7400A26DCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4869F4D27AC1E7400A26DCD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +71,6 @@
 				F4869F5F27AC26A100A26DCD /* Model */,
 				F4869F4B27AC1E7400A26DCD /* AppDelegate.swift */,
 				F4869F4D27AC1E7400A26DCD /* SceneDelegate.swift */,
-				F4869F5127AC1E7400A26DCD /* Main.storyboard */,
 				F4869F5427AC1E7500A26DCD /* Assets.xcassets */,
 				F4869F5627AC1E7500A26DCD /* LaunchScreen.storyboard */,
 				F4869F5927AC1E7500A26DCD /* Info.plist */,
@@ -84,6 +85,7 @@
 				F4869F6427AC37B200A26DCD /* currentWeatherData.swift */,
 				F4869F6627AC3AA300A26DCD /* OneCallAPI.swift */,
 				F4869F6827AC52FB00A26DCD /* WeatherModel.swift */,
+				F47CCE1B27BE758F00CA948E /* TimeCalculator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,6 +101,7 @@
 		F4869F6127AC26B500A26DCD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F4869F5127AC1E7400A26DCD /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				F4869F4C27AC1E7400A26DCD /* AppDelegate.swift in Sources */,
 				F4869F6927AC52FB00A26DCD /* WeatherModel.swift in Sources */,
 				F4869F6727AC3AA300A26DCD /* OneCallAPI.swift in Sources */,
+				F47CCE1C27BE758F00CA948E /* TimeCalculator.swift in Sources */,
 				F4869F4E27AC1E7400A26DCD /* SceneDelegate.swift in Sources */,
 				F4869F6327AC26C800A26DCD /* WeatherManager.swift in Sources */,
 			);

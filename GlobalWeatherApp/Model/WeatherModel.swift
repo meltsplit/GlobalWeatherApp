@@ -4,11 +4,13 @@ struct WeatherModel{
     let cityName : String
     let conditionId : [Int]
     let temperature : [Double]
+    let time : [Int]
+    
     
     var temperatureString: [String]{
         var array:[String] = []
         for i in temperature{
-            array.append(String(format: "%.0f", i))
+            array.append(String(format: "%.0f°", i))
         }
         return array
     }

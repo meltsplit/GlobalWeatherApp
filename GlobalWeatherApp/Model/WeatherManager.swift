@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 protocol WeatherManagerDelegate{
     func didUpdateWeather(_ weatherManager : WeatherManager, weatherModel : WeatherModel)
-    func failUpdateWeather(error: Error)
+    func failUpdateWeather(error: Error,_ errCode: Int)
 }
 struct WeatherManager{
     var url_draft = "https://api.openweathermap.org/data/2.5/weather?&appid=6a999aead6e6daee2426499aab2e37e3&units=metric&q="
@@ -18,6 +18,7 @@ struct WeatherManager{
     func creatUrl(lat: Double,lon:Double){
         let oneCallUrl_draft = "https://api.openweathermap.org/data/2.5/onecall?exclude=minutely&appid=6a999aead6e6daee2426499aab2e37e3&units=metric"
         let oneCallUrl = String(oneCallUrl_draft+"&lat=\(lat)&lon=\(lon)")
+        print("url주소:" + oneCallUrl)
         urltasking(oneCallUrl,2)
     }
     
@@ -28,11 +29,13 @@ struct WeatherManager{
             
             let task = session.dataTask(with: url) { data, response, error in
                 if error != nil{
-                    self.delegate?.failUpdateWeather(error: error!)
+                    self.delegate?.failUpdateWeather(error: error!, 0)
                     return
                 }
                 if let realdata = data{
-                    if check == 1 {parselatlon(realdata)}
+                    if check == 1 {
+                        parselatlon(realdata)
+                    }
                     else if check == 2 {
                         if let weather = self.parseForModel(realdata){
                             self.delegate?.didUpdateWeather(self, weatherModel: weather)
@@ -52,7 +55,7 @@ struct WeatherManager{
             let lon = decodelatlon.coord.lon
             creatUrl(lat: lat, lon: lon)
         }catch{
-            self.delegate?.failUpdateWeather(error: error)
+            self.delegate?.failUpdateWeather(error: error, 1)
         }
     }
     func parseForModel(_ weatherData: Data) -> WeatherModel?{
@@ -61,14 +64,16 @@ struct WeatherManager{
             let decodedData = try decoder.decode(OneCallAPI.self,from: weatherData)
             var weatherId : [Int] = [0,0,0,0,0]
             var weatherTemp : [Double] = [0,0,0,0,0]
+            let cityTime = timeCalculator(tz_offset: decodedData.timezone_offset)
+            
             for i in 0...4{
                 weatherId[i] = decodedData.hourly[i].weather[0].id
                 weatherTemp[i] = decodedData.hourly[i].temp
             }
-            let weather = WeatherModel(cityName: cityName_S, conditionId: weatherId, temperature: weatherTemp)
+            let weather = WeatherModel(cityName: cityName_S, conditionId: weatherId, temperature: weatherTemp, time: cityTime)
             return weather
         }catch{
-            self.delegate?.failUpdateWeather(error: error)
+            self.delegate?.failUpdateWeather(error: error,2)
             return nil
         }
     }

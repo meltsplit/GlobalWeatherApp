@@ -1,5 +1,6 @@
 import Foundation
 struct OneCallAPI : Codable {
+    let timezone_offset : Int
     let hourly: [Hourly]
     let daily: [Daily]
 }
