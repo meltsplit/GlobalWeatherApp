@@ -62,7 +62,7 @@ extension WeatherViewController: WeatherManagerDelegate{
         switch errCode{
         case 0 : print("url task 실패")
         case 1 :
-            print("존재하지 않는 도시")
+            print("decoding실패")
             self.searchTextField.text = "존재하지 않는 도시입니다."
         case 2 : print("해독실패")
         default: return
@@ -72,7 +72,7 @@ extension WeatherViewController: WeatherManagerDelegate{
     
     func didUpdateWeather(_ weatherManager: WeatherManager, weatherModel: WeatherModel) {
         DispatchQueue.main.async {
-            self.cityNameLabel.text = weatherModel.cityName
+//            self.cityNameLabel.text = weatherModel.cityName     //수정필요
             self.temperatureLabel.text = weatherModel.temperatureString[0]
             
             for i in 0...4{
