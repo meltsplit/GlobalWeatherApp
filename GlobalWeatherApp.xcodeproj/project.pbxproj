@@ -15,7 +15,7 @@
 		F4869F5527AC1E7500A26DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4869F5427AC1E7500A26DCD /* Assets.xcassets */; };
 		F4869F5827AC1E7500A26DCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4869F5627AC1E7500A26DCD /* LaunchScreen.storyboard */; };
 		F4869F6327AC26C800A26DCD /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4869F6227AC26C800A26DCD /* WeatherManager.swift */; };
-		F4869F6527AC37B200A26DCD /* currentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4869F6427AC37B200A26DCD /* currentWeatherData.swift */; };
+		F4869F6527AC37B200A26DCD /* geocodingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4869F6427AC37B200A26DCD /* geocodingAPI.swift */; };
 		F4869F6727AC3AA300A26DCD /* OneCallAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4869F6627AC3AA300A26DCD /* OneCallAPI.swift */; };
 		F4869F6927AC52FB00A26DCD /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4869F6827AC52FB00A26DCD /* WeatherModel.swift */; };
 /* End PBXBuildFile section */
@@ -31,7 +31,7 @@
 		F4869F5727AC1E7500A26DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F4869F5927AC1E7500A26DCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4869F6227AC26C800A26DCD /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
-		F4869F6427AC37B200A26DCD /* currentWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = currentWeatherData.swift; sourceTree = "<group>"; };
+		F4869F6427AC37B200A26DCD /* geocodingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = geocodingAPI.swift; sourceTree = "<group>"; };
 		F4869F6627AC3AA300A26DCD /* OneCallAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneCallAPI.swift; sourceTree = "<group>"; };
 		F4869F6827AC52FB00A26DCD /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,7 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				F4869F6227AC26C800A26DCD /* WeatherManager.swift */,
-				F4869F6427AC37B200A26DCD /* currentWeatherData.swift */,
+				F4869F6427AC37B200A26DCD /* geocodingAPI.swift */,
 				F4869F6627AC3AA300A26DCD /* OneCallAPI.swift */,
 				F4869F6827AC52FB00A26DCD /* WeatherModel.swift */,
 				F47CCE1B27BE758F00CA948E /* TimeCalculator.swift */,
@@ -177,7 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4869F6527AC37B200A26DCD /* currentWeatherData.swift in Sources */,
+				F4869F6527AC37B200A26DCD /* geocodingAPI.swift in Sources */,
 				F4869F5027AC1E7400A26DCD /* WeatherViewController.swift in Sources */,
 				F4869F4C27AC1E7400A26DCD /* AppDelegate.swift in Sources */,
 				F4869F6927AC52FB00A26DCD /* WeatherModel.swift in Sources */,

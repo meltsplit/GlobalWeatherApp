@@ -1,7 +1,7 @@
 import Foundation
 
 struct WeatherModel{
-    let cityName : String
+    let h2 : Int
     let conditionId : [Int]
     let temperature : [Double]
     let time : [Int]
