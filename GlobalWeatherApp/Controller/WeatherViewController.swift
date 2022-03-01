@@ -5,22 +5,46 @@ class WeatherViewController: UIViewController{
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var weatherDisplayBar: UIView!
-    
-    
-    @IBOutlet var weatherImage : Array<UIImageView>!
-    @IBOutlet var weatherTemperatureLabel : Array<UILabel>!
-    @IBOutlet var timeLabel : Array<UILabel>!
  
+    @IBOutlet weak var todayBtn: UIButton!
+    @IBOutlet weak var weekBtn: UIButton!
+    
+    @IBOutlet weak var weatherCollectionView: UICollectionView!
+    
+    @IBAction func todayBtnPressed(_ sender: UIButton) {
+        todayOrWeek = true
+        weatherCollectionView.reloadData()
+        todayBtn.backgroundColor = UIColor(named: "ungray")
+        weekBtn.backgroundColor = UIColor(named: "gray")
+    }
+    
+    @IBAction func WeekBtnPressed(_ sender: UIButton) {
+        todayOrWeek = false
+        weatherCollectionView.reloadData()
+        todayBtn.backgroundColor = UIColor(named: "gray")
+        weekBtn.backgroundColor = UIColor(named: "ungray")
+    }
+    
     var weatherManager = WeatherManager()
+    var weatherModel = WeatherModel()
+    
+    var todayOrWeek : Bool = true
+    static var cityName: String = "City"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchTextField.placeholder = "도시명을 영어로 입력해주세요"
-        weatherDisplayBar.layer.cornerRadius = 30
+        searchTextField.placeholder = "도시명을 입력해주세요"
         
         weatherManager.delegate = self
         searchTextField.delegate = self
+        
+        todayBtn.layer.cornerRadius = 20
+        todayBtn.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+        weekBtn.layer.cornerRadius = 20
+        weekBtn.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+        
+        weatherManager.createUrl(cityName: "Seoul")
+        weatherCollectionView.reloadData()
         
     }
 }
@@ -48,7 +72,6 @@ extension WeatherViewController : UITextFieldDelegate{
         let cityName = searchTextField.text!
         weatherManager.createUrl(cityName: cityName)
         //도시를 가지고 날씨를 가져오기.
-        
     }
     
     
@@ -56,6 +79,7 @@ extension WeatherViewController : UITextFieldDelegate{
 
 //MARK: - WeatherManagerDelegate
 extension WeatherViewController: WeatherManagerDelegate{
+    
     func failUpdateWeather(error: Error,_ errCode: Int) {
         print(error)
         DispatchQueue.main.async {
@@ -70,19 +94,47 @@ extension WeatherViewController: WeatherManagerDelegate{
         }
     }
     
-    func didUpdateWeather(_ weatherManager: WeatherManager, weatherModel: WeatherModel) {
+    func didUpdateWeather(_ weatherManager: WeatherManager, weatherModel weatherModel_: WeatherModel) {
         DispatchQueue.main.async {
-//            self.cityNameLabel.text = weatherModel.cityName     //수정필요
-            self.temperatureLabel.text = weatherModel.temperatureString[0]
-            
-            for i in 0...4{
-                self.weatherImage[i].image = UIImage(named: weatherModel.conditionName[i])
-                self.weatherTemperatureLabel[i].text = weatherModel.temperatureString[i]
-                self.timeLabel[i].text = String(weatherModel.time[i])+"시"
-            }
-            self.timeLabel[0].text = "지금"
+            self.weatherModel = weatherModel_
+            self.cityNameLabel.text = WeatherViewController.cityName
+            self.temperatureLabel.text = weatherModel_.hourlyTemperature[0]
+            self.weatherCollectionView.reloadData()
         }
         
     }
+}
+
+extension WeatherViewController: UICollectionViewDelegate,UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if todayOrWeek == true{
+            return weatherModel.hourWeatherId.count
+        }
+        else{
+            return weatherModel.dailyWeatherId.count
+        }
+       
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = weatherCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! WeatherCollectionViewCell
+        
+        if todayOrWeek == true{
+            cell.temperatureLabel.text = weatherModel.hourlyTemperature[indexPath.row]
+            cell.timeLabel.text = weatherModel.todayTime[indexPath.row]
+            cell.weatherImg.image = UIImage(named: weatherModel.hourWeatherId[indexPath.row])
+        }
+        else {
+            cell.temperatureLabel.text = weatherModel.dailyTemperature[indexPath.row]
+            cell.timeLabel.text = weatherModel.dayWeek[indexPath.row]
+            cell.weatherImg.image = UIImage(named: weatherModel.dailyWeatherId[indexPath.row])
+        }
+        
+        
+        return cell
+    }
+    
+    
 }
 
