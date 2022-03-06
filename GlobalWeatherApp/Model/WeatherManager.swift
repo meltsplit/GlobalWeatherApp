@@ -37,7 +37,7 @@ struct WeatherManager{
                         if let weather = self.parseForModel(realdata){
                             self.delegate?.didUpdateWeather(self, weatherModel: weather)
                         }
-                    default : break  // break 맞나?
+                    default : break  
                     }
                 }
             }

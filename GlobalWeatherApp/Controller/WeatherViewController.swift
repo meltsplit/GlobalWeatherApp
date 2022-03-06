@@ -11,6 +11,9 @@ class WeatherViewController: UIViewController{
     
     @IBOutlet weak var weatherCollectionView: UICollectionView!
     
+    var todayOrWeek : Bool = true
+    static var cityName: String = "City"
+    
     @IBAction func todayBtnPressed(_ sender: UIButton) {
         todayOrWeek = true
         weatherCollectionView.reloadData()
@@ -28,9 +31,6 @@ class WeatherViewController: UIViewController{
     var weatherManager = WeatherManager()
     var weatherModel = WeatherModel()
     
-    var todayOrWeek : Bool = true
-    static var cityName: String = "City"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.placeholder = "도시명을 입력해주세요"
@@ -44,7 +44,6 @@ class WeatherViewController: UIViewController{
         weekBtn.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
         
         weatherManager.createUrl(cityName: "Seoul")
-        weatherCollectionView.reloadData()
         
     }
 }
@@ -71,7 +70,6 @@ extension WeatherViewController : UITextFieldDelegate{
         print(searchTextField.text!)
         let cityName = searchTextField.text!
         weatherManager.createUrl(cityName: cityName)
-        //도시를 가지고 날씨를 가져오기.
     }
     
     
@@ -89,7 +87,7 @@ extension WeatherViewController: WeatherManagerDelegate{
             print("decoding실패")
             self.searchTextField.text = "존재하지 않는 도시입니다."
         case 2 : print("해독실패")
-        default: return
+        default: break
         }
         }
     }

@@ -79,7 +79,7 @@ struct DataTranslator{
     func temperatureTranslator(_ dailyStruct: [Daily]) -> [String]{
         var temperatureArray:[String] = []
         for i in 0...6{
-            temperatureArray.append(String(format: "%.0f°~%.0f°", dailyStruct[i].temp.min,dailyStruct[i].temp.max))
+            temperatureArray.append(String(format: "%.0f~%.0f°", dailyStruct[i].temp.min,dailyStruct[i].temp.max))
            
         }
         return temperatureArray
