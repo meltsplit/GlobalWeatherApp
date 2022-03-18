@@ -103,7 +103,7 @@ extension WeatherViewController: WeatherManagerDelegate{
     }
 }
 
-extension WeatherViewController: UICollectionViewDelegate,UICollectionViewDataSource{
+extension WeatherViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if todayOrWeek == true{

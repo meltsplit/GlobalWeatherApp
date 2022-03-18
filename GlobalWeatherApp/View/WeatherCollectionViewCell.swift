@@ -13,6 +13,4 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var weatherImg: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     
-    
-    
 }
